@@ -3,6 +3,29 @@ import altair as alt
 import math
 import pandas as pd
 import streamlit as st
+import requests
+
+
+def check_website(url):
+    response = requests.get(url)
+    if response.status_code == 200:
+        return True
+    else:
+        return False
+
+def main():
+    url = st.text_input("Enter a website URL:")
+    is_up = check_website(url)
+    if is_up:
+        st.write("The website is up!")
+    else:
+        st.write("The website is down.")
+
+if __name__ == "__main__":
+    main()
+
+
+
 
 """
 # Welcome to Streamlit!
